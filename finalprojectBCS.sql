@@ -1,5 +1,6 @@
 create database FinalProject;
 use FinalProject;
+
 SELECT 
     SubscriptionType,
     COUNT(*) AS TotalCustomers,
@@ -8,6 +9,7 @@ SELECT
 FROM CustomerSubscriptions
 GROUP BY SubscriptionType
 ORDER BY SubscriptionType;
+
 SELECT 
     SubscriptionType,
     Gender,
@@ -15,6 +17,7 @@ SELECT
 FROM CustomerSubscriptions
 GROUP BY SubscriptionType, Gender
 ORDER BY SubscriptionType, Gender;
+
 SELECT 
     CustomerID,
     Name,
@@ -23,6 +26,7 @@ SELECT
 FROM CustomerSubscriptions
 WHERE TotalSessions < 5
 AND FeedbackScore < 5;
+
 SELECT 
     CustomerID,
     Name,
@@ -30,6 +34,7 @@ SELECT
     DATEDIFF(CURDATE(), LastLoginDate) AS DaysSinceLastLogin
 FROM CustomerSubscriptions
 WHERE DATEDIFF(CURDATE(), LastLoginDate) > 60;
+
 SELECT 
     SubscriptionType,
     COUNT(*) AS TotalCustomers,
@@ -38,6 +43,7 @@ SELECT
 FROM CustomerSubscriptions
 GROUP BY SubscriptionType
 ORDER BY ChurnRatePercent DESC;
+
 SELECT 
     CustomerID,
     Name,
@@ -47,6 +53,7 @@ SELECT
 FROM CustomerSubscriptions
 ORDER BY SubscriptionLengthDays DESC
 LIMIT 10;
+
 SELECT 
     CASE 
         WHEN Age BETWEEN 18 AND 25 THEN '18-25'
@@ -63,6 +70,7 @@ SELECT
 FROM CustomerSubscriptions
 GROUP BY AgeGroup
 ORDER BY ChurnRatePercent DESC;
+
 SELECT 
     DATE_FORMAT(SubscriptionDate, '%Y-%m') AS Month,
     COUNT(*) AS TotalCustomers,
@@ -71,6 +79,7 @@ SELECT
 FROM CustomerSubscriptions
 GROUP BY DATE_FORMAT(SubscriptionDate, '%Y-%m')
 ORDER BY Month;
+
 SELECT 
     COUNT(*) AS TotalCustomers,
     ROUND((SUM(IsChurned) / COUNT(*)) * 100, 2) AS ChurnPercentage,
